@@ -7,6 +7,8 @@ namespace ExerciceApp
 {
     public partial class MainWindow : Window
     {
+        public int SelectedExercise { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -16,22 +18,16 @@ namespace ExerciceApp
         {
             if (exercisesListBox.SelectedItem != null)
             {
-                int exerciseNumber = exercisesListBox.SelectedIndex + 1;
+                SelectedExercise = exercisesListBox.SelectedIndex + 1;
                 string equation = GenerateRandomEquation();
 
-                equationTextBlock.Text = $"Exercice {exerciseNumber}: Résolvez l'équation\n{equation}";
+                equationTextBlock.Text = $"Exercice {SelectedExercise}: Résolvez l'équation\n{equation}";
                 answerTextBox.Text = string.Empty;
             }
         }
 
         private void CheckButton_Click(object sender, RoutedEventArgs e)
         {
-            int exerciseNumber = exercisesListBox.SelectedIndex + 1;
-            string equation = equationTextBlock.Text.Split('\n')[1];
-            string userAnswer = answerTextBox.Text;
-            // Logique pour vérifier la réponse
-            // Dans cet exemple, on suppose que l'utilisateur a correctement répondu à chaque fois
-            MessageBox.Show($"Exercice {exerciseNumber} - Correct !\n{equation} = {userAnswer}", "Résultat");
             CheckExercise();
         }
 
@@ -50,13 +46,12 @@ namespace ExerciceApp
         {
             if (exercisesListBox.SelectedItem != null)
             {
-                int exerciseNumber = exercisesListBox.SelectedIndex + 1;
                 string equation = equationTextBlock.Text.Split('\n')[1];
                 string userAnswer = answerTextBox.Text;
 
                 // Logique pour vérifier la réponse
                 // Dans cet exemple, on suppose que l'utilisateur a correctement répondu à chaque fois
-                MessageBox.Show($"Exercice {exerciseNumber} - Correct !\n{equation} = {userAnswer}", "Résultat");
+                MessageBox.Show($"Exercice {SelectedExercise} - Correct !\n{equation} = {userAnswer}", "Résultat");
 
                 // Sélectionner le prochain exercice
                 int nextIndex = exercisesListBox.SelectedIndex + 1;
@@ -77,10 +72,9 @@ namespace ExerciceApp
         {
             if (e.Key == Key.Enter)
             {
-                // Le code à exécuter lors de l'appui sur la touche Entrée
                 MessageBox.Show("La touche Entrée a été pressée !");
                 CheckExercise();
-                e.Handled = true; // Pour éviter la propagation de l'événement
+                e.Handled = true;
             }
         }
     }

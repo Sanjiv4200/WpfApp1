@@ -1,0 +1,8 @@
+﻿<Window x:Class="WpfApp1.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <Button Content="Exercice 1" Click="Exercice1_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
